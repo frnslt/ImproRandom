@@ -1,6 +1,6 @@
 ImproRandom
 
-ImproRandom è un'applicazione web interattiva progettata per generare idee casuali per l'improvvisazione teatrale. Consente di estrarre combinazioni di personaggi, luoghi e azioni per creare scene originali e divertenti.
+ImproRandom è un'applicazione web interattiva che consente di estrarre combinazioni di personaggi, luoghi e azioni per creare scene di improvvisazione teatrale.
 
 Funzionalità principali
 Generazione casuale: Genera combinazioni casuali di personaggi, luoghi e azioni.
@@ -22,8 +22,7 @@ database.js: Contiene i database predefiniti di personaggi, luoghi e azioni.
 
 Tecnologie utilizzate
 HTML5: Struttura del progetto.
-CSS3: Stile e layout (base).
-JavaScript (ES6): Logica dell'applicazione e manipolazione del DOM.
+JavaScript (ES6): Logica dell'applicazione.
 GitHub Pages: Hosting statico per l'applicazione.
 
 Note
