@@ -32,5 +32,5 @@ Le modifiche al database non sono persistenti: ogni sessione inizia con i dati p
 Per una versione completamente dinamica con salvataggio server-side, sarebbe necessaria un'integrazione backend.
 
 
-# Realizzato con 💡, passione e chatGPT da Francesca.
+Realizzato con 💡, passione e chatGPT da Francesca.
 
