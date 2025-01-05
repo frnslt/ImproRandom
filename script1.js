@@ -132,7 +132,7 @@ async function updateDatabaseFile(newDatabaseContent) {
 
     alert('Database aggiornato con successo!');
   } catch (error) {
-    console.error('Errore nell'aggiornamento del database:', error);
+    console.error('Errore nell\'aggiornamento del database:', error);
   }
 }
 
