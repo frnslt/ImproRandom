@@ -110,8 +110,9 @@ async function updateDatabaseFile(newDatabaseContent) {
   const branch = 'main';
   const token = 'TUO_PERSONAL_ACCESS_TOKEN'; // Usa un token protetto lato server per sicurezza
 
-  const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
-
+  const url = // `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
+    'https://raw.githubusercontent.com/frnslt/ImproRandom/main/database.js'; // URL grezzo del file
+  
   try {
     // Ottieni l'SHA del file esistente
     const getResponse = await fetch(url, {
