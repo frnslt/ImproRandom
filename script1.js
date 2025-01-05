@@ -51,11 +51,11 @@ const addItemButton = document.getElementById("add-item");
 // Funzione per generare output random unico
 function generateOutput() {
   const selectedOption = document.querySelector('input[name="option"]:checked').value;
+   console.log('Opzione selezionata:', selectedOption); // Log per debug
   const quantity = selectedOption === "personaggi" ? parseInt(document.getElementById("quantity").value) : 1;
 
   const selectedList = database[selectedOption];
-
-  console.log('Lista selezionata:', selectedList); // Log del selectedList per debugging
+  console.log('Lista selezionata:', selectedList); // Log per debug
   
   if (!Array.isArray(selectedList)) {
     console.error(`Errore: la lista selezionata (${selectedOption}) non è un array o non esiste.`, selectedList);
