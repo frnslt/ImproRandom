@@ -48,9 +48,6 @@ const categorySelect = document.getElementById("category");
 const newItemInput = document.getElementById("new-item");
 const addItemButton = document.getElementById("add-item");
 
-//Log della variabile database che verifica che il db sia caricato correttamente
-console.log('Contenuto del database:', database);
-
 // Funzione per generare output random unico
 function generateOutput() {
   const selectedOption = document.querySelector('input[name="option"]:checked').value;
@@ -58,6 +55,8 @@ function generateOutput() {
 
   const selectedList = database[selectedOption];
 
+  console.log('Lista selezionata:', selectedList); // Log del selectedList per debugging
+  
   if (!Array.isArray(selectedList)) {
     console.error(`Errore: la lista selezionata (${selectedOption}) non è un array o non esiste.`, selectedList);
     alert(`Errore: non posso generare elementi perché la lista selezionata (${selectedOption}) non è valida.`);
