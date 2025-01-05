@@ -96,7 +96,7 @@ async function updateDatabaseFile(newContent, fileName) {
   const branch = 'main';
   const token = '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';
 
-  const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${option}.js`;
+  const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${category}.js`;
 
   try {
     const getResponse = await fetch(url, {
