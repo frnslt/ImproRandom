@@ -47,6 +47,21 @@ const categorySelect = document.getElementById("category");
 const newItemInput = document.getElementById("new-item");
 const addItemButton = document.getElementById("add-item");
 
+// Controllo caricamento database
+async function fetchDatabase() {
+  try {
+    const response = await fetch('https://raw.githubusercontent.com/tuo-repository/database.js');
+    if (!response.ok) {
+      throw new Error('Errore nel recupero del database');
+    }
+    const fileContent = await response.text();
+    eval(fileContent);  // Verifica che questo codice esegua correttamente il caricamento del database
+    console.log('Database caricato:', database);
+  } catch (error) {
+    console.error('Errore nel caricamento del database:', error);
+  }
+}
+
 // Funzione per generare output random unico
 function generateOutput() {
   const selectedOption = document.querySelector('input[name="option"]:checked').value;
