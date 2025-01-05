@@ -22,7 +22,15 @@ async function fetchDatabase() {
     }
 
     const fileContent = await response.text();
-    eval(fileContent); // Esegue il contenuto del file e inizializza `database`
+    console.log("Contenuto del file recuperato:", fileContent); // Log per debug
+
+    // Usa Function per isolare l'esecuzione e evitare conflitti globali
+    //const databaseInitializer = new Function("database", fileContent);
+    //databaseInitializer(database);
+    //console.log("Database inizializzato:", database); // Verifica il contenuto di `database`
+    
+    // Esegue il contenuto del file e inizializza `database`
+    eval(fileContent); 
     console.log('Database caricato con successo:', database);
   } catch (error) {
     console.error('Errore nel caricamento del database:', error);
