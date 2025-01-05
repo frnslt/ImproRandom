@@ -29,13 +29,10 @@ async function fetchDatabase() {
 }
 
 // Richiamare fetchdatabase() prima dell'uso
-fetchDatabase()
-  .then(() => {
-    console.log('Applicazione pronta all\'uso.');
-  })
-  .catch((error) => {
-    console.error('Errore nel caricamento del database:', error);
-  });
+fetchDatabase().then(() => {
+  // Qui puoi iniziare a eseguire altre funzioni che dipendono da `database`
+  console.log('Applicazione pronta all'uso.');
+});
 
 // Variabili per la password
 const PASSWORD = "securepassword123";
@@ -56,9 +53,26 @@ function generateOutput() {
   const quantity = selectedOption === "personaggi" ? parseInt(document.getElementById("quantity").value) : 1;
 
   const selectedList = database[selectedOption];
-  const randomItems = getRandomUniqueItems(selectedList, quantity);
 
-  outputDiv.textContent = randomItems.join(", ");
+  if (selectedOption === "personaggi") {
+    if (!Array.isArray(selectedList)) {
+      console.error(`Errore: la lista selezionata (${selectedOption}) non è un array o non esiste.`, selectedList);
+      alert(`Errore: non posso generare elementi perché la lista selezionata (${selectedOption}) non è valida.`);
+      return;
+    }
+
+    const randomItems = getRandomUniqueItems(selectedList, quantity);
+    outputDiv.textContent = randomItems.join(", ");
+  } else {
+    if (!Array.isArray(selectedList)) {
+      console.error(`Errore: la lista selezionata (${selectedOption}) non è un array o non esiste.`, selectedList);
+      alert(`Errore: non posso generare elementi perché la lista selezionata (${selectedOption}) non è valida.`);
+      return;
+    }
+
+    const randomItem = selectedList[Math.floor(Math.random() * selectedList.length)];
+    outputDiv.textContent = randomItem;
+  }
 }
 
 // Listener sul bottone Genera
@@ -132,7 +146,7 @@ async function updateDatabaseFile(newDatabaseContent) {
 
     alert('Database aggiornato con successo!');
   } catch (error) {
-    console.error('Errore nell\'aggiornamento del database:', error);
+    console.error('Errore nell'aggiornamento del database:', error);
   }
 }
 
