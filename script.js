@@ -90,7 +90,7 @@ addItemButton.addEventListener("click", async () => {
 });
 
 // Scrittura del file aggiornato
-async function updateDatabaseFile(newContent, fileName) {
+async function updateDatabaseFile(newContent, category) {
   const repoOwner = 'frnslt';
   const repoName = 'ImproRandom';
   const branch = 'main';
@@ -119,7 +119,7 @@ async function updateDatabaseFile(newContent, fileName) {
         Accept: 'application/vnd.github.v3+json',
       },
       body: JSON.stringify({
-        message: `Aggiornamento di ${fileName}`,
+        message: `Aggiornamento di ${category}`,
         content: btoa(newContent),
         sha: sha,
         branch: branch,
@@ -130,7 +130,7 @@ async function updateDatabaseFile(newContent, fileName) {
       throw new Error(`Errore nella scrittura del file: ${putResponse.statusText}`);
     }
 
-    alert(`File ${fileName} aggiornato con successo.`);
+    alert(`File ${category} aggiornato con successo.`);
   } catch (error) {
     console.error(`Errore nell'aggiornamento del file ${fileName}:`, error);
   }
