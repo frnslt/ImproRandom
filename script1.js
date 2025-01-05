@@ -108,7 +108,7 @@ async function updateDatabaseFile(newDatabaseContent) {
   const repoName = 'ImproRandom';
   const filePath = 'database.js';
   const branch = 'main';
-  const token = 'TUO_PERSONAL_ACCESS_TOKEN'; // Usa un token protetto lato server per sicurezza
+  const token = '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'; // Dovrei usare un token protetto lato server per sicurezza, ma ops
 
   const url = // `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
     'https://raw.githubusercontent.com/frnslt/ImproRandom/main/database.js'; // URL grezzo del file
