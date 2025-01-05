@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImproRandom</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    label {
+      margin-right: 10px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .hidden {
+      display: none;
+    }
+    .form-container {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ImproRandom</h1>
+  <div>
+    <label>
+      <input type="radio" name="option" value="personaggi" onchange="handleOptionChange()">
+      Personaggi
+    </label>
+    <label>
+      <input type="radio" name="option" value="luoghi" onchange="handleOptionChange()">
+      Luoghi
+    </label>
+    <label>
+      <input type="radio" name="option" value="azioni" checked onchange="handleOptionChange()">
+      Azioni
+    </label>
+  </div>
+  <div id="number-selection" class="hidden">
+    <label for="quantity">Numero di elementi:</label>
+    <input type="number" id="quantity" min="1" value="1">
+  </div>
+  <button id="generate">Genera</button>
+  <button id="edit-database">Modifica Database</button>
+  <div class="output" id="output"></div>
+
+  <!-- Form per ampliare il database -->
+  <div class="form-container hidden" id="form-container">
+    <h3>Aggiungi al Database</h3>
+    <label for="category">Seleziona categoria:</label>
+    <select id="category">
+      <option value="personaggi">Personaggi</option>
+      <option value="luoghi">Luoghi</option>
+      <option value="azioni">Azioni</option>
+    </select>
+    <br><br>
+    <label for="new-item">Nuovo elemento:</label>
+    <input type="text" id="new-item">
+    <button id="add-item">Aggiungi</button>
+  </div>
+
+  <script>
+    function handleOptionChange() {
+      const selectedOption = document.querySelector('input[name="option"]:checked').value;
+      const numberSelection = document.getElementById("number-selection");
+      const output = document.getElementById("output");
+
+      // Mostra "Numero di elementi" solo per "Personaggi"
+      if (selectedOption === "personaggi") {
+        numberSelection.classList.remove("hidden");
+      } else {
+        numberSelection.classList.add("hidden");
+      }
+
+      // Cancella l'output precedente
+      output.textContent = "";
+    }
+  </script>
+
+  <script type="module" src="script1.js"></script>
+</body>
+</html>
