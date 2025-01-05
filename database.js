@@ -1,4 +1,4 @@
-const database = {
+export const database = {
   personaggi: [
     "Un cercatore di tesori", "Un neonazista", "Un'indossatrice", "Un'attrice di teatro",
     "Un hooligan", "Un animalista", "Un camorrista", "Un gondoliere", "Un eschimese",
