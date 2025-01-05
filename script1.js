@@ -33,11 +33,11 @@ async function fetchDatabase() {
     }
   
     // Esegue il contenuto del file
-    eval(fileContent); 
-    console.log('Database caricato con successo:', database);
-  } catch (error) {
-    console.error('eval - Errore nel caricamento del database:', error);
-  }
+  //  eval(fileContent); 
+  //  console.log('Database caricato con successo:', database);
+  //} catch (error) {
+  //  console.error('eval - Errore nel caricamento del database:', error);
+ // }
 }
 
 // Richiamare fetchdatabase() prima dell'uso
