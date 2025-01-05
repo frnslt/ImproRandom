@@ -8,7 +8,7 @@ const PASSWORD = "securepassword123";
 
 // Funzione per caricare dinamicamente i file delle liste
 async function loadList(option) {
-  const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${option}.js`;
+  const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${option}`;
 
   try {
     const response = await fetch(url);
