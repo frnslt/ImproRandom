@@ -1,4 +1,4 @@
-import { database } from '../database.js'; // Importa il database dal file separato
+import { database } from './database.js'; // Importa il database dal file separato
 
 // Variabili per la password
 const PASSWORD = "securepassword123";
