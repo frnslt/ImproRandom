@@ -4,6 +4,7 @@ const outputDiv = document.getElementById("output");
 const editDatabaseButton = document.getElementById("edit-database");
 const formContainer = document.getElementById("form-container");
 const addItemButton = document.getElementById("add-item");
+const PASSWORD = "securepassword123";
 
 // Funzione per caricare dinamicamente i file delle liste
 async function loadList(option) {
