@@ -1,4 +1,41 @@
-import { database } from './database.js'; // Importa il database dal file separato
+// Importa il database dal file separato
+//import { database } from './database.js'; 
+//*
+// Lettura dinamica del file database dal repository
+let database = {}; // Variabile globale per memorizzare i dati del database
+
+async function fetchDatabase() {
+  const repoOwner = 'frnslt'; // Tuo username GitHub
+  const repoName = 'ImproRandom'; // Nome del repository
+  const filePath = 'database.js'; // Percorso del file nel repository
+  const branch = 'main'; // Branch principale
+
+  const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Accept: 'application/vnd.github.v3.raw',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Errore nella lettura del file: ${response.statusText}`);
+    }
+
+    const fileContent = await response.text();
+    eval(fileContent); // Esegue il contenuto del file e inizializza `database`
+    console.log('Database caricato con successo:', database);
+  } catch (error) {
+    console.error('Errore nel caricamento del database:', error);
+  }
+}
+
+// Richiamare fetchdatabase() prima dell'uso
+fetchDatabase().then(() => {
+  // Qui puoi iniziare a eseguire altre funzioni che dipendono da `database`
+  console.log('Applicazione pronta all\'uso.');
+});
 
 // Variabili per la password
 const PASSWORD = "securepassword123";
@@ -37,33 +74,106 @@ document.addEventListener("keydown", (event) => {
 // Listener sul bottone Modifica Database
 editDatabaseButton.addEventListener("click", () => {
   if (!isAuthenticated) {
-    const enteredPassword = prompt("Inserisci la password per modificare il database:");
-    if (enteredPassword === PASSWORD) {
-      isAuthenticated = true;
-      alert("Accesso consentito. Puoi ora modificare il database.");
-      formContainer.classList.remove("hidden");
-    } else {
-      alert("Password errata. Accesso negato.");
-    }
+document.getElementById("edit-database").addEventListener("click", async () => {
+  // Carica il database
+  await fetchDatabase();
+
+  const enteredPassword = prompt("Inserisci la password per modificare il database:");
+  if (enteredPassword === PASSWORD) {
+    isAuthenticated = true;
+    alert("Accesso consentito. Puoi ora modificare il database.");
+    document.getElementById("form-container").classList.remove("hidden");
   } else {
+    alert("Password errata. Accesso negato.");
+    }
+  // Old
+  } else { 
     formContainer.classList.toggle("hidden");
   }
 });
 
+// Scrittura del database
+async function updateDatabaseFile(newDatabaseContent) {
+  const repoOwner = 'frnslt';
+  const repoName = 'ImproRandom';
+  const filePath = 'database.js';
+  const branch = 'main';
+  const token = 'TUO_PERSONAL_ACCESS_TOKEN'; // Usa un token protetto lato server per sicurezza
+
+  const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+
+  try {
+    // Ottieni l'SHA del file esistente
+    const getResponse = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github.v3+json',
+      },
+    });
+
+    if (!getResponse.ok) {
+      throw new Error(`Errore nel recupero del file: ${getResponse.statusText}`);
+    }
+
+    const { sha } = await getResponse.json();
+
+    // Scrivi il nuovo contenuto del file
+    const putResponse = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github.v3+json',
+      },
+      body: JSON.stringify({
+        message: 'Aggiornamento database.js',
+        content: btoa(newDatabaseContent), // Codifica Base64 del nuovo contenuto
+        sha: sha,
+        branch: branch,
+      }),
+    });
+
+    if (!putResponse.ok) {
+      throw new Error(`Errore nella scrittura del file: ${putResponse.statusText}`);
+    }
+
+    alert('Database aggiornato con successo!');
+  } catch (error) {
+    console.error('Errore nell\'aggiornamento del database:', error);
+  }
+}
+
 // Listener sul bottone Aggiungi
 addItemButton.addEventListener("click", () => {
-  const category = categorySelect.value;
-  const newItem = newItemInput.value.trim();
+//  const category = categorySelect.value;
+//  const newItem = newItemInput.value.trim();
+//
+//  if (newItem) {
+//    database[category].push(newItem);
+//    alert(`Elemento aggiunto alla categoria ${category}: "${newItem}"`);
+//    newItemInput.value = ""; // Svuota il campo di input
+//  } else {
+//    alert("Inserisci un elemento valido.");
+//  }
+document.getElementById("add-item").addEventListener("click", async () => {
+  const category = document.getElementById("category").value;
+  const newItem = document.getElementById("new-item").value.trim();
 
   if (newItem) {
-    database[category].push(newItem);
-    alert(`Elemento aggiunto alla categoria ${category}: "${newItem}"`);
-    newItemInput.value = ""; // Svuota il campo di input
+    await fetchDatabase(); // Carica il database aggiornato
+
+    database[category].push(newItem); // Aggiungi l'elemento localmente
+
+    // Aggiorna il file nel repository
+    const newDatabaseContent = `export const database = ${JSON.stringify(database, null, 2)};`;
+    await updateDatabaseFile(newDatabaseContent);
+
+    document.getElementById("new-item").value = ""; // Svuota il campo di input
   } else {
     alert("Inserisci un elemento valido.");
-  }
+  }  
 });
 
+// funzione add per generare output random unico
 function getRandomUniqueItems(array, count) {
   const availableItems = [...array];
   const selectedItems = [];
