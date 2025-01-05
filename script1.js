@@ -1,6 +1,3 @@
-// Importa il database dal file separato
-//import { database } from './database.js'; 
-//*
 // Lettura dinamica del file database dal repository
 let database = {}; // Variabile globale per memorizzare i dati del database
 
@@ -34,7 +31,7 @@ async function fetchDatabase() {
 // Richiamare fetchdatabase() prima dell'uso
 fetchDatabase().then(() => {
   // Qui puoi iniziare a eseguire altre funzioni che dipendono da `database`
-  console.log('Applicazione pronta all\'uso.');
+  console.log('Applicazione pronta all'uso.');
 });
 
 // Variabili per la password
@@ -72,9 +69,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 // Listener sul bottone Modifica Database
-editDatabaseButton.addEventListener("click", () => {
-  if (!isAuthenticated) {
-document.getElementById("edit-database").addEventListener("click", async () => {
+editDatabaseButton.addEventListener("click", async () => {
   // Carica il database
   await fetchDatabase();
 
@@ -85,10 +80,6 @@ document.getElementById("edit-database").addEventListener("click", async () => {
     document.getElementById("form-container").classList.remove("hidden");
   } else {
     alert("Password errata. Accesso negato.");
-    }
-  // Old
-  } else { 
-    formContainer.classList.toggle("hidden");
   }
 });
 
@@ -138,23 +129,12 @@ async function updateDatabaseFile(newDatabaseContent) {
 
     alert('Database aggiornato con successo!');
   } catch (error) {
-    console.error('Errore nell\'aggiornamento del database:', error);
+    console.error('Errore nell'aggiornamento del database:', error);
   }
 }
 
 // Listener sul bottone Aggiungi
-addItemButton.addEventListener("click", () => {
-//  const category = categorySelect.value;
-//  const newItem = newItemInput.value.trim();
-//
-//  if (newItem) {
-//    database[category].push(newItem);
-//    alert(`Elemento aggiunto alla categoria ${category}: "${newItem}"`);
-//    newItemInput.value = ""; // Svuota il campo di input
-//  } else {
-//    alert("Inserisci un elemento valido.");
-//  }
-document.getElementById("add-item").addEventListener("click", async () => {
+addItemButton.addEventListener("click", async () => {
   const category = document.getElementById("category").value;
   const newItem = document.getElementById("new-item").value.trim();
 
