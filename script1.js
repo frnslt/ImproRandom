@@ -1,7 +1,7 @@
 import { database } from 'database.js'; // Importa il database dal file separato
 
 // Variabili per la password
-const PASSWORD = "1mpr0-Hd3m1a"; 
+const PASSWORD = "1111"; 
 let isAuthenticated = false;
 
 // Elementi della UI
