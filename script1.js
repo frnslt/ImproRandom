@@ -53,7 +53,9 @@ function generateOutput() {
   const selectedOption = document.querySelector('input[name="option"]:checked').value;
    console.log('Opzione selezionata:', selectedOption); // Log per debug
   const quantity = selectedOption === "personaggi" ? parseInt(document.getElementById("quantity").value) : 1;
-
+  
+  console.log('Contenuto del database:', database); // Log per debug
+  
   const selectedList = database[selectedOption];
   console.log('Lista selezionata:', selectedList); // Log per debug
   
