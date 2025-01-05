@@ -29,10 +29,13 @@ async function fetchDatabase() {
 }
 
 // Richiamare fetchdatabase() prima dell'uso
-fetchDatabase().then(() => {
-  // Qui puoi iniziare a eseguire altre funzioni che dipendono da `database`
-  console.log('Applicazione pronta all'uso.');
-});
+fetchDatabase()
+  .then(() => {
+    console.log('Applicazione pronta all\'uso.');
+  })
+  .catch((error) => {
+    console.error('Errore nel caricamento del database:', error);
+  });
 
 // Variabili per la password
 const PASSWORD = "securepassword123";
