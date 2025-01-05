@@ -72,7 +72,6 @@ function generateOutput() {
     outputDiv.textContent = randomItem;
   }
 }
-}
 
 // Listener sul bottone Genera
 generateButton.addEventListener("click", generateOutput);
