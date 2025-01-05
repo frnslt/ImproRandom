@@ -1,3 +1,10 @@
+// Elementi della UI
+const generateButton = document.getElementById("generate");
+const outputDiv = document.getElementById("output");
+const editDatabaseButton = document.getElementById("edit-database");
+const formContainer = document.getElementById("form-container");
+const addItemButton = document.getElementById("add-item");
+
 // Funzione per caricare dinamicamente i file delle liste
 async function loadList(option) {
   const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${option}.js`;
