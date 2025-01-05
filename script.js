@@ -88,7 +88,7 @@ async function updateDatabaseFile(newContent, fileName) {
   const branch = 'main';
   const token = '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';
 
-  const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${fileName}`;
+  const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${option}.js`;
 
   try {
     const getResponse = await fetch(url, {
