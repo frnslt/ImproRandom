@@ -27,6 +27,7 @@ Tecnologie utilizzate
 - JavaScript (ES6): Logica dell'applicazione.
 
 Note
+
 Le modifiche al database non sono persistenti: ogni sessione inizia con i dati predefiniti contenuti in database.js.
 Per una versione completamente dinamica con salvataggio server-side, sarebbe necessaria un'integrazione backend.
 
