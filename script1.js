@@ -26,9 +26,8 @@ async function fetchDatabase() {
 
     // Crea un contesto isolato per valutare il file
     const databaseInitializer = new Function(`
-      let database2 = {};
       ${fileContent}
-      return database2;
+      return database;
     `);
 
     database = databaseInitializer();
