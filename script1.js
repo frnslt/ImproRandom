@@ -31,7 +31,7 @@ async function fetchDatabase() {
 // Richiamare fetchdatabase() prima dell'uso
 fetchDatabase().then(() => {
   // Qui puoi iniziare a eseguire altre funzioni che dipendono da `database`
-  console.log('Applicazione pronta all'uso.');
+  console.log('Applicazione pronta all\'uso.');
 });
 
 // Variabili per la password
@@ -146,7 +146,7 @@ async function updateDatabaseFile(newDatabaseContent) {
 
     alert('Database aggiornato con successo!');
   } catch (error) {
-    console.error('Errore nell'aggiornamento del database:', error);
+    console.error('Errore nell\'aggiornamento del database:', error);
   }
 }
 
