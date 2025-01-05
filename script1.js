@@ -48,6 +48,8 @@ const categorySelect = document.getElementById("category");
 const newItemInput = document.getElementById("new-item");
 const addItemButton = document.getElementById("add-item");
 
+//Log della variabile database che verifica che il db sia caricato correttamente
+console.log('Contenuto del database:', database);
 
 // Funzione per generare output random unico
 function generateOutput() {
@@ -56,25 +58,20 @@ function generateOutput() {
 
   const selectedList = database[selectedOption];
 
-  if (selectedOption === "personaggi") {
-    if (!Array.isArray(selectedList)) {
-      console.error(`Errore: la lista selezionata (${selectedOption}) non è un array o non esiste.`, selectedList);
-      alert(`Errore: non posso generare elementi perché la lista selezionata (${selectedOption}) non è valida.`);
-      return;
-    }
+  if (!Array.isArray(selectedList)) {
+    console.error(`Errore: la lista selezionata (${selectedOption}) non è un array o non esiste.`, selectedList);
+    alert(`Errore: non posso generare elementi perché la lista selezionata (${selectedOption}) non è valida.`);
+    return;
+  }
 
+  if (selectedOption === "personaggi") {
     const randomItems = getRandomUniqueItems(selectedList, quantity);
     outputDiv.textContent = randomItems.join(", ");
   } else {
-    if (!Array.isArray(selectedList)) {
-      console.error(`Errore: la lista selezionata (${selectedOption}) non è un array o non esiste.`, selectedList);
-      alert(`Errore: non posso generare elementi perché la lista selezionata (${selectedOption}) non è valida.`);
-      return;
-    }
-
     const randomItem = selectedList[Math.floor(Math.random() * selectedList.length)];
     outputDiv.textContent = randomItem;
   }
+}
 }
 
 // Listener sul bottone Genera
@@ -100,6 +97,26 @@ editDatabaseButton.addEventListener("click", async () => {
   } else {
     alert("Password errata. Accesso negato.");
   }
+});
+
+// Listener sul bottone Aggiungi
+addItemButton.addEventListener("click", async () => {
+  const category = document.getElementById("category").value;
+  const newItem = document.getElementById("new-item").value.trim();
+
+  if (newItem) {
+    await fetchDatabase(); // Carica il database aggiornato
+
+    database[category].push(newItem); // Aggiungi l'elemento localmente
+
+    // Aggiorna il file nel repository
+    const newDatabaseContent = `export const database = ${JSON.stringify(database, null, 2)};`;
+    await updateDatabaseFile(newDatabaseContent);
+
+    document.getElementById("new-item").value = ""; // Svuota il campo di input
+  } else {
+    alert("Inserisci un elemento valido.");
+  }  
 });
 
 // Scrittura del database
@@ -152,26 +169,6 @@ async function updateDatabaseFile(newDatabaseContent) {
     console.error('Errore nell\'aggiornamento del database:', error);
   }
 }
-
-// Listener sul bottone Aggiungi
-addItemButton.addEventListener("click", async () => {
-  const category = document.getElementById("category").value;
-  const newItem = document.getElementById("new-item").value.trim();
-
-  if (newItem) {
-    await fetchDatabase(); // Carica il database aggiornato
-
-    database[category].push(newItem); // Aggiungi l'elemento localmente
-
-    // Aggiorna il file nel repository
-    const newDatabaseContent = `export const database = ${JSON.stringify(database, null, 2)};`;
-    await updateDatabaseFile(newDatabaseContent);
-
-    document.getElementById("new-item").value = ""; // Svuota il campo di input
-  } else {
-    alert("Inserisci un elemento valido.");
-  }  
-});
 
 // funzione add per generare output random unico
 function getRandomUniqueItems(array, count) {
