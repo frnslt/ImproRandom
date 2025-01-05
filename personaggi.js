@@ -1,0 +1,21 @@
+const personaggi = [
+  "Un cercatore di tesori", "Un neonazista", "Un'indossatrice", "Un'attrice di teatro",
+  "Un hooligan", "Un animalista", "Un camorrista", "Un gondoliere", "Un eschimese",
+  "Un astronauta", "Un generale dell'esercito", "Un contadino", "Un investigatore privato",
+  "Una barista", "Un influencer", "Un ladro", "Un calciatore", "Una spia", "Un musicista",
+  "Un ingegnere", "Un vampiro", "Una casalinga", "Un adolescente", "Un inventore",
+  "Una cantante", "Un clown", "Un prete", "Una maga", "Un pirata", "Una guida turistica",
+  "Un marinaio", "Una principessa", "Un robot", "Un tifoso", "Un farmacista", "Una sposa",
+  "Un fotografo", "Un profugo", "Un pilota d’aereo", "Una star del cinema", "Un bibliotecario",
+  "Un avvocato", "Una babysitter", "Un architetto", "Una psicologa", "Un DJ", "Una nonna",
+  "Un artista", "Un calzolaio", "Un pescatore", "Un pittore", "Un giornalista", "Un attore",
+  "Un vigile del fuoco", "Un insegnante", "Un criminale", "Un meccanico", "Un pugile",
+  "Un poliziotto", "Un avventuriero", "Un barbiere", "Un operatore sanitario", "Una guida alpina",
+  "Un capitano di nave", "Una suora", "Un pilota di Formula 1", "Un geologo", "Un medico",
+  "Una ricercatrice", "Un politico", "Una ballerina", "Un tatuatore", "Un fornaio", "Un hacker",
+  "Un programmatore", "Un ambientalista", "Un giocatore di poker", "Un archeologo", "Un bagnino",
+  "Un autista", "Un giardiniere", "Una guida safari", "Un poeta", "Un produttore musicale",
+  "Un cantante folk", "Un corriere", "Una guardia del corpo", "Un venditore ambulante",
+  "Un cartografo", "Un eremita", "Un maestro di danza", "Un pilota di drone", "Un costruttore",
+  "Un mago", "Una guida turistica"
+];
