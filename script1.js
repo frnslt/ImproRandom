@@ -7,8 +7,9 @@ async function fetchDatabase() {
   const filePath = 'database.js'; // Percorso del file nel repository
   const branch = 'main'; // Branch principale
 
-  const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
-
+  const url = // `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
+    'https://raw.githubusercontent.com/frnslt/ImproRandom/main/database.js'; // URL grezzo del file
+  
   try {
     const response = await fetch(url, {
       headers: {
