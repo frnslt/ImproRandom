@@ -24,16 +24,19 @@ async function fetchDatabase() {
     const fileContent = await response.text();
     console.log("Contenuto del file recuperato:", fileContent); // Log per debug
 
-    // Usa Function per isolare l'esecuzione e evitare conflitti globali
-    //const databaseInitializer = new Function("database", fileContent);
-    //databaseInitializer(database);
-    //console.log("Database inizializzato:", database); // Verifica il contenuto di `database`
-    
-    // Esegue il contenuto del file e inizializza `database`
+    // Usa Function per isolare l'inizializzazione ed evitare conflitti globali
+    const databaseInitializer = new Function("database", fileContent);
+    databaseInitializer(database);
+    console.log("Database inizializzato:", database); // Verifica il contenuto di `database`
+     } catch (error) {
+    console.error('init - Errore nel caricamento del database init:', error);
+    }
+  
+    // Esegue il contenuto del file
     eval(fileContent); 
     console.log('Database caricato con successo:', database);
   } catch (error) {
-    console.error('Errore nel caricamento del database:', error);
+    console.error('eval - Errore nel caricamento del database:', error);
   }
 }
 
