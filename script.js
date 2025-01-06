@@ -8,7 +8,16 @@ const PASSWORD = "securepassword123";
 
 // Funzione per caricare dinamicamente i file delle liste
 async function loadList(option) {
-  const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${option}.js`;
+  //raw url
+  //const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${option}.js`;
+  //GitHub REST API
+  const repoOwner = 'frnslt';
+  const repoName = 'ImproRandom';
+  const branch = 'main';
+  const filePath = `${option}.js`;
+
+  const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
+
 
   try {
     const response = await fetch(url);
@@ -90,7 +99,8 @@ addItemButton.addEventListener("click", async () => {
 });
 
 // Scrittura del file aggiornato
-async function updateDatabaseFile(newContent, category) {
+const fileName = `${category}.js`;
+async function updateDatabaseFile(newContent, fileName) {
   const repoOwner = 'frnslt';
   const repoName = 'ImproRandom';
   const branch = 'main';
