@@ -20,7 +20,12 @@ async function loadList(option) {
 
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url); {
+      headers: {
+        Accept: 'application/vnd.github.v3.raw',
+      },
+    });
+    
     if (!response.ok) {
       throw new Error(`Errore nel caricamento di ${option}: ${response.statusText}`);
     }
