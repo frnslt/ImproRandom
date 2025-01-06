@@ -8,9 +8,6 @@ const PASSWORD = "securepassword123";
 
 // Funzione per caricare dinamicamente i file delle liste
 async function loadList(option) {
-  //raw url
-  //const url = `https://raw.githubusercontent.com/frnslt/ImproRandom/main/${option}.js`;
-  //GitHub REST API
   const repoOwner = 'frnslt';
   const repoName = 'ImproRandom';
   const branch = 'main';
@@ -18,19 +15,20 @@ async function loadList(option) {
 
   const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
 
-
   try {
-    const response = await fetch(url); {
+    const response = await fetch(url, {
       headers: {
         Accept: 'application/vnd.github.v3.raw',
       },
     });
-    
+
     if (!response.ok) {
       throw new Error(`Errore nel caricamento di ${option}: ${response.statusText}`);
     }
 
     const fileContent = await response.text();
+    console.log("Contenuto del file recuperato:", fileContent); // Log per debug
+
     const listInitializer = new Function(`
       ${fileContent}
       return ${option};
