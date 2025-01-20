@@ -107,7 +107,7 @@ async function updateDatabaseFile(newContent, fileName) {
   const repoOwner = 'frnslt';
   const repoName = 'ImproRandom';
   const branch = 'main';
-  const token = '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';
+  const token = 'token';
 
   const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${fileName}`;
 
